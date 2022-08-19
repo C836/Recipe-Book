@@ -5,6 +5,9 @@ import { SafeAreaView, StyleSheet, Text, Image, View } from "react-native";
 import { useFonts } from "expo-font";
 
 import { Clock, Plate } from "./../assets/img"
+import { Heading } from "./Heading";
+import { Paragraph } from "./Paragraph";
+import { Bold } from "./Bold";
 
 export function Details({ title, summary, prepareTime, servings }) {
   const [fontsLoaded] = useFonts({
@@ -17,22 +20,24 @@ export function Details({ title, summary, prepareTime, servings }) {
 
   return (
     <SafeAreaView style={styles.details}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.summary}>
+      <Heading>{title}</Heading>
+      <Paragraph style={styles.summary}>
         {cleanText(summary).slice(0, 200) + "..."}
-      </Text>
+      </Paragraph>
 
       <View style={styles.infos}>
         <View style={styles.info}>
           <Clock width={38} height={50} />
-          <Text style={styles.small}>{prepareTime} min</Text>
+          <Paragraph style={styles.small}>{prepareTime} min</Paragraph>
         </View>
 
         <View style={styles.info}>
           <Plate width={50} height={50} />
-          <Text>{servings} servings</Text>
+          <Paragraph>{servings} servings</Paragraph>
         </View>
       </View>
+
+      <Bold style={styles.title}>Ingredients</Bold>
     </SafeAreaView>
   );
 }
@@ -42,18 +47,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     padding: 15
-  },
-  title: {
-    fontFamily: "Roboto",
-    fontWeight: "bold",
-    fontSize: 24,
-    paddingBottom: 14
-  },
-  summary: {
-    fontFamily: "Roboto",
-    fontWeight: "normal",
-    fontSize: 15,
-    paddingBottom: 25
   },
   infos: {
     display: "flex",
