@@ -20,14 +20,14 @@ export function Details({ title, summary, prepareTime, servings }) {
 
   return (
     <SafeAreaView style={styles.details}>
-      <Heading>{title}</Heading>
-      <Paragraph style={styles.summary}>
+      <Heading style={{ paddingBottom: 15 }}>{title}</Heading>
+      <Paragraph style={{ paddingBottom: 25 }}>
         {cleanText(summary).slice(0, 200) + "..."}
       </Paragraph>
 
-      <Info prepareTime={50} servings={3} />
+      <Info style={{ paddingBottom: 15 }} prepareTime={50} servings={3} />
 
-      <Bold style={styles.title}>Ingredients</Bold>
+      <Bold style={{ paddingBottom: 15 }}>Ingredients</Bold>
     </SafeAreaView>
   );
 }
@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
   details: {
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    padding: 15
-  }
+    padding: 15,
+  },
 });

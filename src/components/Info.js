@@ -5,9 +5,9 @@ import { Paragraph } from "./Paragraph";
 
 import { Clock, Plate } from "./../assets/img"
 
-export function Info({ prepareTime, servings }) {
+export function Info({ style, prepareTime, servings }) {
   return (
-    <View style={styles.infos}>
+    <View style={[style, styles.infos]}>
       <View style={styles.info}>
         <Clock width={38} height={50} />
         <Paragraph style={styles.small}>{prepareTime} min</Paragraph>
