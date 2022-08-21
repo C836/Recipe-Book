@@ -3,8 +3,8 @@ import { API_KEY } from "@env"
 
 const BASE_URL = "https://api.spoonacular.com/recipes/";
 
-export function getRecipe() {
-  return axios.get(BASE_URL + "715538" + "/information", {
+export function getRecipe(id) {
+  return axios.get(BASE_URL + id + "/information", {
     params: {
       apiKey: API_KEY,
     },
