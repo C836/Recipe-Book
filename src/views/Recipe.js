@@ -62,7 +62,7 @@ export function Recipe({ recipeData, setRecipe }) {
 
           <Bold style={{ paddingBottom: 20, paddingTop: 10 }}>Cooking</Bold>
 
-          {analyzedInstructions.map((item) => (
+          {analyzedInstructions[0].steps.map((item) => (
             <Instruction index={item.number} key={item.number}>
               {item.step}
             </Instruction>
