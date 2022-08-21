@@ -2,12 +2,12 @@ import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
 import { useState } from "react";
 import { recipeSearch } from "../services/recipeSearch";
 
-export function Search({setRecipe}) {
+export function Search({searchId}) {
   const [suggestionsList, setSuggestionsList] = useState(null);
 
   const onSelectItem = (item) => {
     if (item) {
-      setRecipe(item.id);
+      searchId(item.id);
     }
   };
 
