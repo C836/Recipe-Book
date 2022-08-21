@@ -22,7 +22,9 @@ export default function App() {
 
   return (
     <SafeAreaView>
-      <StatusBar />
+      <StatusBar
+        backgroundColor="#000"
+      />
       <Recipe
         recipeData={recipeData}
         setRecipe={setRecipe}
