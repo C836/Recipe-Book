@@ -2,24 +2,35 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, StatusBar } from "react-native";
 import { Recipe } from "./src/views/Recipe";
 import { Main } from "./src/views/Main";
+import { getRecipe } from "./src/services/recipe";
 
 export default function App() {
   const [recipeData, setRecipe] = useState({
     id: null,
-    data: null,
+    recipe: null,
   });
 
-  useEffect(() => {
-    console.log(recipeData);
-  }, [recipeData]);
+  const recipeSearch = () => {
+    if (recipeData.id) {
+      getRecipe(recipeData.id).then((response) =>
+        setRecipe({ ...recipeData, recipe: response })
+      );
+    }
+  };
+
+  useEffect(recipeSearch, [recipeData.id]);
 
   return (
     <SafeAreaView>
       <StatusBar />
-      <Recipe />
-      <Main 
-        recipedata={recipeData} 
-        setRecipe={setRecipe} />
+      <Recipe
+        recipeData={recipeData}
+        setRecipe={setRecipe}
+      />
+      <Main
+        recipeData={recipeData}
+        setRecipe={setRecipe}
+      />
     </SafeAreaView>
   );
 }
