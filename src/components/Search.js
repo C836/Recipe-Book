@@ -2,7 +2,7 @@ import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
 import { useState } from "react";
 import { recipeSearch } from "../services/recipeSearch";
 
-export function Search({searchId}) {
+export function Search({ searchId }) {
   const [suggestionsList, setSuggestionsList] = useState(null);
 
   const onSelectItem = (item) => {
@@ -22,8 +22,8 @@ export function Search({searchId}) {
   };
 
   const onClear = () => {
-    setSuggestionsList([])
-  }
+    setSuggestionsList([]);
+  };
 
   return (
     <AutocompleteDropdown
@@ -41,6 +41,9 @@ export function Search({searchId}) {
         placeholderTextColor: "#999",
       }}
       dataSet={suggestionsList}
+      containerStyle={{
+        zIndex: 99
+      }}
     />
   );
 }
