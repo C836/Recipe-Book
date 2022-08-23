@@ -1,17 +1,15 @@
 import React from "react";
-import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 
 import { useFonts } from "expo-font";
 
 import {
   Background,
-  Heading,
   Paragraph,
-  Bold,
   Info,
   Ingredient,
   Instruction,
-  Return
+  Return,
 } from "./../components";
 
 export function Recipe({ recipeData, setRecipe }) {
@@ -41,34 +39,72 @@ export function Recipe({ recipeData, setRecipe }) {
 
     return (
       <SafeAreaView>
-        <Background image={recipe.image} />
-        <ScrollView style={styles.details}>
-          <Heading style={{ paddingBottom: 15 }}>{title}</Heading>
-          <Paragraph style={{ paddingBottom: 25 }}>
-            {cleanText(summary).slice(0, 200) + "..."}
-          </Paragraph>
+        <Background
+          style={recipe.background}
+          image={recipe.image}
+        />
+        <ScrollView>
+          <View
+            style={styles.details}
+          >
+            <Paragraph
+              style={styles.details.title}
+              weight={"700Bold"}
+              size={25}
+            >
+              {title}
+            </Paragraph>
+            <Paragraph
+              style={styles.details.summary}
+              weight={"300Light"}
+              height={22}
+            >
+              {cleanText(summary).slice(0, 200) + "..."}
+            </Paragraph>
 
-          <Info
-            style={{ paddingBottom: 18 }}
-            prepareTime={readyInMinutes}
-            servings={servings}
-          />
+            <Info
+              style={styles.details.info}
+              prepareTime={readyInMinutes}
+              servings={servings}
+            />
 
-          <Bold style={{ paddingBottom: 20 }}>Ingredients</Bold>
+            <Paragraph
+              style={styles.details.ingredients}
+              weight={"600SemiBold"}
+              size={20}
+            >
+              Ingredients
+            </Paragraph>
 
-          {extendedIngredients.map((item, index) => (
-            <Ingredient key={index}>{item.original}</Ingredient>
-          ))}
+            {extendedIngredients.map((item, index) => (
+              <Ingredient
+                key={index}
+              >
+                {item.original}
+              </Ingredient>
+            ))}
 
-          <Bold style={{ paddingBottom: 20, paddingTop: 10 }}>Cooking</Bold>
+            <Paragraph
+              style={styles.details.cooking}
+              weight={"600SemiBold"}
+              size={20}
+            >
+              Cooking
+            </Paragraph>
 
-          {analyzedInstructions[0].steps.map((item) => (
-            <Instruction index={item.number} key={item.number}>
-              {item.step}
-            </Instruction>
-          ))}
+            {analyzedInstructions[0].steps.map((item) => (
+              <Instruction
+                key={item.number}
+                index={item.number}
+              >
+                {item.step}
+              </Instruction>
+            ))}
+          </View>
         </ScrollView>
-        <Return returnFunction={clearRecipe} />
+        <Return
+          returnFunction={clearRecipe}
+        />
       </SafeAreaView>
     );
   }
@@ -81,5 +117,21 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     padding: 15,
     backgroundColor: "white",
+    title: {
+      paddingBottom: 15
+    },
+    summary: {
+      paddingBottom: 25
+    },
+    info: {
+      paddingBottom: 18
+    },
+    ingredients: {
+      paddingBottom: 20
+    },
+    cooking: {
+      paddingBottom: 20,
+      paddingTop: 10
+    }
   },
 });
