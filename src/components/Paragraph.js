@@ -1,21 +1,51 @@
 import React from "react";
 
-import { StyleSheet, Text } from "react-native";
+import { Text } from "react-native";
 
-import { useFonts } from "expo-font";
+import {
+  useFonts,
+  Raleway_100Thin,
+  Raleway_300Light,
+  Raleway_400Regular,
+  Raleway_500Medium,
+  Raleway_600SemiBold,
+  Raleway_700Bold,
+  Raleway_800ExtraBold,
+  Raleway_900Black,
+} from "@expo-google-fonts/raleway";
 
-export function Paragraph({ children, style }) {
-  useFonts({
-    "Roboto-Regular": require("./../assets/fonts/Roboto-Regular.ttf"),
+export function Paragraph({ style, children, size, weight, color, height }) {
+  let [fontsLoaded] = useFonts({
+    Raleway_100Thin,
+    Raleway_300Light,
+    Raleway_400Regular,
+    Raleway_500Medium,
+    Raleway_600SemiBold,
+    Raleway_700Bold,
+    Raleway_800ExtraBold,
+    Raleway_900Black,
   });
 
-  return <Text style={[style, styles.paragraph]}>{children}</Text>;
-}
+  const fontSize = size ? size : 16;
+  const fontWeight = weight ? `Raleway_${weight}` : "Raleway_400Regular";
+  const fontColor = color ? color : "black";
+  const fontHeight = height && height
 
-const styles = StyleSheet.create({
-  paragraph: {
-    fontFamily: "Roboto",
-    fontWeight: "normal",
-    fontSize: 15
-  },
-});
+  if (fontsLoaded) {
+    return (
+      <Text
+        style={[
+          style,
+          {
+            fontSize: fontSize,
+            fontFamily: fontWeight,
+            color: fontColor,
+            lineHeight: fontHeight,
+          },
+        ]}
+      >
+        {children}
+      </Text>
+    );
+  }
+}
